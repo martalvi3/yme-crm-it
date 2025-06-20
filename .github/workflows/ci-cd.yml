@@ -1,0 +1,44 @@
+name: Modify and Push to GitHub Pages Repository
+
+on:
+  push:
+    branches:
+      - "v1.0"
+
+jobs:
+  modify-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+
+      - name: Run your file modification script
+        run: |
+          chmod +x ./.github/workflows/modify.sh
+          ./.github/workflows/./modify.sh
+
+      - name: Push to target repository
+        env:
+          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Setup a temporary folder
+          mkdir ../target-repo
+          cd ../target-repo
+
+          # Clone target repository
+          git clone https://${TARGET_REPO_TOKEN}@github.com/fvissani-reply/yme-crm-it-pages .git .
+          
+          # Clean the repo and copy everything from the source
+          rm -rf *
+          cp -r ../$(basename $GITHUB_WORKSPACE)/* .
+          cp -r ../$(basename $GITHUB_WORKSPACE)/.github/assets/* .
+          rm -rf .github/
+
+          # Commit and push
+          git add .
+          git commit -m "Update from source repo on $GITHUB_SHA" || echo "No changes to commit"
+          git push origin main
