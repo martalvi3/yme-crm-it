@@ -22,23 +22,23 @@ jobs:
         env:
           TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]" || exit 1
+          git config --global user.email "github-actions[bot]@users.noreply.github.com" || exit 2
 
           # Setup a temporary folder
-          mkdir ../target-repo
-          cd ../target-repo
+          mkdir ../target-repo || exit 3
+          cd ../target-repo || exit 4
 
           # Clone target repository
-          git clone https://${TARGET_REPO_TOKEN}@github.com/fvissani-reply/yme-crm-it-pages .git .
+          git clone https://${TARGET_REPO_TOKEN}@github.com/fvissani-reply/yme-crm-it-pages .git . || exit 5
           
           # Clean the repo and copy everything from the source
-          rm -rf *
-          cp -r ../$(basename $GITHUB_WORKSPACE)/* .
-          cp -r ../$(basename $GITHUB_WORKSPACE)/.github/assets/* .
-          rm -rf .github/
+          rm -rf * || exit 6
+          cp -r ../$(basename $GITHUB_WORKSPACE)/* . || exit 7
+          cp -r ../$(basename $GITHUB_WORKSPACE)/.github/assets/* . || exit 8
+          rm -rf .github/ || exit 9
 
           # Commit and push
-          git add .
-          git commit -m "Update from source repo on $GITHUB_SHA" || echo "No changes to commit"
-          git push origin main
+          git add . || exit 10
+          git commit -m "Update from source repo on $GITHUB_SHA" || echo "No changes to commit" || exit 11
+          git push origin main || exit 12
