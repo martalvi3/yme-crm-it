@@ -10,11 +10,17 @@ Welcome to ReadMe! :owlbert:
 You're on your way to building an awesome developer hub! Here's some of the things you'll want to check out.
 
 {: .note-title }
-> 📘 custom block
+> 📘 custom block note title 
 >
 > aaaaa
 
-# 📝 Customize your docsYAY
+
+{: .important }
+> cIMPORTANT BLOCK 
+>
+> aaaaa
+
+# 📝 Customize your docsYAY PROVA
 
 What you're looking at right now is what we call our **Guides**. It's a free-form place to write to your heart's content! And the best part is... you aren't alone! Your users can contribute (with your approval, don't worry!) using the **[Suggested Edits](https://docs.readme.com/main/docs/suggested-edits)** feature on every page. It's like GitHub Pull Requests, but for text!
 
