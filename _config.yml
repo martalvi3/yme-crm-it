@@ -1,0 +1,7 @@
+title: CRM Reboost
+description: Reboost
+remote_theme: pmarsceill/just-the-docs
+plugins:
+  - jekyll-remote-theme
+url: https://martalvi3.github.io/yme-crm-it/
+ 
