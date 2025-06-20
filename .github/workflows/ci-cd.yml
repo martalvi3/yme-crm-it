@@ -30,7 +30,7 @@ jobs:
           cd ../target-repo || exit 4
 
           # Clone target repository
-          git clone https://${TARGET_REPO_TOKEN}@github.com/fvissani-reply/yme-crm-it-pages .git . || exit 5
+          git clone https://${TARGET_REPO_TOKEN}@github.com/fvissani-reply/yme-crm-it-pages.git . || exit 5
           
           # Clean the repo and copy everything from the source
           rm -rf * || exit 6
